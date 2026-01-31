@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { fetchInventoryItems } from '@/app/lib/data';
+export const runtime = 'nodejs';
+
 
 export async function GET() {
   // /api/inventory-test/route.ts
