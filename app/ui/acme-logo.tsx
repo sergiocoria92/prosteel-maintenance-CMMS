@@ -1,13 +1,13 @@
-import { GlobeAltIcon } from '@heroicons/react/24/outline';
+// app/ui/acme-logo.tsx
+// ✅ Change "Cumbre" -> "CMMS"
+// This component is what renders the big brand text in the blue box.
+
 import { lusitana } from '@/app/ui/fonts';
 
 export default function AcmeLogo() {
   return (
-    <div
-      className={`${lusitana.className} flex flex-row items-center leading-none text-white`}
-    >
-      <GlobeAltIcon className="h-12 w-12 rotate-[15deg]" />
-      <p className="text-[44px]">Acme</p>
-    </div>
+    <p className={`${lusitana.className} text-[44px] leading-none md:text-[64px]`}>
+      CMMS
+    </p>
   );
 }
