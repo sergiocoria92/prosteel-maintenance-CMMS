@@ -35,18 +35,17 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              // MOBILE: cuadrado, sin grow, icon-only
-              'group flex h-12 w-12 flex-none items-center justify-center gap-2 rounded-md ' +
+              'group flex h-10 w-full items-center justify-center gap-2 rounded-md ' +
                 'bg-gray-50 p-2 text-sm font-medium text-gray-900 ' +
                 'hover:bg-sky-100 hover:text-blue-600 ' +
                 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ' +
-                // DESKTOP: tu layout original
-                'md:h-[48px] md:w-full md:justify-start md:p-2 md:px-3',
+                'md:h-[48px] md:justify-start md:p-2 md:px-3',
               { 'bg-sky-100 text-blue-600': isActive },
             )}
+
             title={link.name} // útil en mobile (tooltip)
           >
-            <LinkIcon className="w-6" />
+            <LinkIcon className="w-5 md:w-6" />
             <p className="hidden md:block">{link.name}</p>
           </Link>
         );

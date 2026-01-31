@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import NavLinks from '@/app/ui/dashboard/nav-links';
 import AcmeLogo from '@/app/ui/acme-logo';
@@ -9,42 +8,44 @@ export default function SideNav() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="flex w-full flex-row items-center gap-2 px-2 py-2 md:h-full md:flex-col md:items-stretch md:gap-0 md:px-3 md:py-4">
-      {/* Logo: compacto en mobile, grande en desktop */}
+    <div className="flex h-full flex-col px-2 py-3 md:px-3 md:py-4">
+      {/* Logo: centrado en móvil, normal en md+ */}
       <Link
-        className="flex h-14 flex-none items-center justify-center rounded-md bg-blue-600 px-3 md:mb-2 md:h-40 md:items-end md:justify-start md:p-4"
+        className="mb-2 flex h-14 items-center justify-center rounded-md bg-blue-600 p-2 md:h-40 md:items-end md:justify-start md:p-4"
         href="/"
       >
-        <div className="w-24 text-white md:w-40">
+        <div className="w-full md:w-40">
           <AcmeLogo />
         </div>
       </Link>
 
-      {/* Links: fila (mobile) / columna (md+) */}
-      <div className="flex grow flex-row items-center gap-2 overflow-x-auto md:flex-col md:items-stretch md:overflow-visible md:space-y-2">
+      {/* Links + Sign out en columna */}
+      <div className="flex grow flex-col items-stretch gap-2">
         <NavLinks />
 
-        {/* Sign out: icon-only en mobile */}
         <form
           action={async () => {
             'use server';
             await signOut({ redirectTo: '/' });
           }}
         >
-          <button className="flex h-12 w-12 flex-none items-center justify-center gap-2 rounded-md bg-gray-50 p-2 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:h-[48px] md:w-full md:justify-start md:p-2 md:px-3">
-            <PowerIcon className="w-6" />
+          <button className="flex h-10 w-full items-center justify-center rounded-md bg-gray-50 p-2 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:h-[48px] md:justify-start md:px-3">
+            <PowerIcon className="w-5 md:w-6" />
             <span className="hidden md:block">Sign Out</span>
           </button>
         </form>
 
-        {/* Footer: solo desktop */}
-        <div className="mt-2 hidden rounded-md bg-gray-50 px-3 py-2 text-[11px] text-gray-500 md:block">
+        {/* Footer: ocúltalo en móvil (estorba) */}
+        <div className="hidden rounded-md bg-gray-50 px-3 py-2 text-[11px] text-gray-500 md:block">
           © {currentYear} Developed by Sergio Coria Maya. All rights reserved.
         </div>
+
+        <div className="grow" />
       </div>
     </div>
   );
 }
+
 
 
 

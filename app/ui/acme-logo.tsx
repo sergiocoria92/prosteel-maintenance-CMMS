@@ -6,8 +6,9 @@ import { lusitana } from '@/app/ui/fonts';
 
 export default function AcmeLogo() {
   return (
-    <p className={`${lusitana.className} text-[44px] leading-none md:text-[64px]`}>
+    <div className="w-full text-center font-serif text-3xl leading-none text-white md:text-5xl">
       CMMS
-    </p>
+    </div>
   );
 }
+
