@@ -35,18 +35,17 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              'group flex h-10 w-full items-center justify-center gap-2 rounded-md ' +
-                'bg-gray-50 p-2 text-sm font-medium text-gray-900 ' +
-                'hover:bg-sky-100 hover:text-blue-600 ' +
-                'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ' +
-                'md:h-[48px] md:justify-start md:p-2 md:px-3',
-              { 'bg-sky-100 text-blue-600': isActive },
-            )}
-
+            'group flex h-14 w-full flex-col items-center justify-center gap-1 rounded-md ' +
+              'bg-gray-50 p-2 text-[10px] font-medium text-gray-900 ' +
+              'hover:bg-sky-100 hover:text-blue-600 ' +
+              'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ' +
+              'md:h-[48px] md:flex-row md:justify-start md:gap-2 md:p-2 md:px-3 md:text-sm',
+            { 'bg-sky-100 text-blue-600': isActive },
+          )}
             title={link.name} // útil en mobile (tooltip)
           >
             <LinkIcon className="w-5 md:w-6" />
-            <p className="hidden md:block">{link.name}</p>
+            <p className="block text-[10px] leading-tight md:text-sm">{link.name}</p>
           </Link>
         );
       })}
