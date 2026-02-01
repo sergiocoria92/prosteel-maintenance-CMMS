@@ -3,12 +3,11 @@ import { fetchCardData } from '@/app/lib/data';
 import {
   ClipboardDocumentListIcon, // Órdenes abiertas
   CheckCircleIcon,           // Órdenes cerradas
-  WrenchScrewdriverIcon,     // Solicitudes (simuladas con invoices)
+  WrenchScrewdriverIcon,     // Solicitudes
   CpuChipIcon,               // Máquinas
 } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
 
-// Tipos nuevos de cards (CMMS)
 const iconMap = {
   openOrders: ClipboardDocumentListIcon,
   closedOrders: CheckCircleIcon,
@@ -17,7 +16,6 @@ const iconMap = {
 };
 
 export default async function CardWrapper() {
-  // Traemos lo nuevo desde fetchCardData()
   const {
     openWorkOrdersCount,
     closedWorkOrdersCount,
@@ -25,13 +23,14 @@ export default async function CardWrapper() {
     machinesCount,
   } = await fetchCardData();
 
+  // ✅ AQUÍ va el grid (una sola vez)
   return (
-    <>
+    <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
       <Card title="Órdenes abiertas" value={openWorkOrdersCount} type="openOrders" />
       <Card title="Órdenes cerradas" value={closedWorkOrdersCount} type="closedOrders" />
       <Card title="Solicitudes de reparación" value={repairRequestsCount} type="repairRequests" />
       <Card title="Máquinas" value={machinesCount} type="machines" />
-    </>
+    </div>
   );
 }
 
@@ -46,10 +45,9 @@ export function Card({
 }) {
   const Icon = iconMap[type];
 
+  // ✅ ESTA función solo retorna UNA tarjeta (no grid)
   return (
-  <div className="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
-    {/* Card */}
-    <div className="col-span-2 rounded-xl bg-gray-50 p-3 md:col-span-1 md:p-4">
+    <div className="rounded-xl bg-gray-50 p-3 md:p-4">
       <div className="flex items-center gap-2">
         {Icon ? <Icon className="h-5 w-5 text-gray-700" /> : null}
         <h3 className="text-xs font-medium leading-tight md:text-sm">{title}</h3>
@@ -61,9 +59,7 @@ export function Card({
         {value}
       </p>
     </div>
-  </div>
-);
-
+  );
 }
 
 

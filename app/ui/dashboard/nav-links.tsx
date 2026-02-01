@@ -35,25 +35,26 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-            'group flex h-14 w-full flex-col items-center justify-center gap-1 rounded-md ' +
-              'bg-gray-50 p-2 text-[10px] font-medium text-gray-900 ' +
-              'hover:bg-sky-100 hover:text-blue-600 ' +
-              'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ' +
-              'md:h-[48px] md:flex-row md:justify-start md:gap-2 md:p-2 md:px-3 md:text-sm',
-            { 'bg-sky-100 text-blue-600': isActive },
-          )}
-            title={link.name} // útil en mobile (tooltip)
+              // ✅ mobile: más alto y texto más chico para que "Spare Parts Requests" NO se corte
+              'group flex w-full flex-col items-center justify-center gap-1 rounded-md ' +
+                'bg-gray-50 px-1 py-2 text-[9px] font-medium leading-[1.05] text-gray-900 ' +
+                'hover:bg-sky-100 hover:text-blue-600 ' +
+                'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ' +
+                'h-16 ' +
+                // ✅ md+: normal como antes
+                'md:h-[48px] md:flex-row md:justify-start md:gap-2 md:p-2 md:px-3 md:text-sm md:leading-normal',
+              { 'bg-sky-100 text-blue-600': isActive },
+            )}
+            title={link.name}
           >
             <LinkIcon className="w-5 md:w-6" />
-            <p className="block text-[10px] leading-tight md:text-sm">{link.name}</p>
+            <p className="text-center md:text-left">{link.name}</p>
           </Link>
         );
       })}
     </>
   );
 }
-
-
 
 
 

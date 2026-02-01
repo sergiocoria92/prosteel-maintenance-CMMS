@@ -7,8 +7,6 @@ import DowntimeByMonthChart from '../../ui/dashboard/downtime-by-month-chart';
 import SparePartsPareto from '../../ui/dashboard/spare-parts-pareto';
 import { Suspense } from 'react';
 
-
-
 export default async function Page() {
   return (
     <main>
@@ -17,42 +15,21 @@ export default async function Page() {
         Dashboard
       </h1>
 
-      {/* ====== CARDS SUPERIORES ======
-         Nota:
-         - Por ahora NO estoy tocando tu CardWrapper ni tu BD.
-         - Solo dejamos este bloque tal cual para no meternos con errores de tablas.
-         - Más adelante tú puedes cambiar esas cards a:
-           Open Work Orders, Closed Work Orders, Spare Parts Requests, etc.
-      */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <Suspense fallback={<CardsSkeleton />}>
-          <CardWrapper />
-        </Suspense>
-      </div>
+      {/* ✅ CARDS SUPERIORES (grid vive dentro de CardWrapper) */}
+      <Suspense fallback={<CardsSkeleton />}>
+        <CardWrapper />
+      </Suspense>
 
-      {/* ====== ZONA DE GRÁFICOS (como tu dibujo) ======
-         Querías 3 gráficos:
-         1) Preventive Maintenance Compliance (PMC)
-         2) Total Downtime by Month
-         3) Spare Parts (pareto / barras horizontales)
-         
-         IMPORTANTE:
-         - Dices que aún no tienes datos.
-         - Entonces estos componentes NO consultan BD.
-         - Muestran un "placeholder/skeleton" para que el layout ya exista.
-      */}
+      {/* ====== ZONA DE GRÁFICOS ====== */}
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12">
-        {/* 1) Preventive Maintenance Compliance (gráfico grande) */}
         <div className="lg:col-span-8">
           <PreventiveComplianceChart />
         </div>
 
-        {/* 2) Total Downtime by Month */}
         <div className="lg:col-span-4">
           <DowntimeByMonthChart />
         </div>
 
-        {/* 3) Spare Parts Requests (pareto / horizontal) */}
         <div className="lg:col-span-12">
           <SparePartsPareto />
         </div>
@@ -60,8 +37,6 @@ export default async function Page() {
     </main>
   );
 }
-
-
 
 
 
